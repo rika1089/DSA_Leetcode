@@ -1,26 +1,28 @@
-from typing import List
-
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
-            return 0
-
-        n, m = len(grid), len(grid[0])
-
-        def dfs(i, j):
-            if i < 0 or i >= n or j < 0 or j >= m or grid[i][j] == "0":
-                return
-            grid[i][j] = "0"  # mark visited
-            dfs(i+1, j)
-            dfs(i-1, j)
-            dfs(i, j+1)
-            dfs(i, j-1)
-
         islands = 0
-        for i in range(n):
-            for j in range(m):
-                if grid[i][j] == "1":
+        visited = set()
+        rows, cols = len(grid), len(grid[0])
+
+        def bfs(r, c):
+            q = deque()
+            visited.add((r, c))
+            q.append((r, c))
+
+            while q:
+                row, col = q.popleft()
+                directions = [[1,0],[-1,0],[0,1],[0,-1]]
+
+                for dr, dc in directions:
+                    r, c = row + dr, col + dc
+                    if 0 <= r < rows and 0 <= c < cols and grid[r][c] == "1" and (r, c) not in visited:
+                        q.append((r, c))
+                        visited.add((r, c))
+
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == "1" and (r, c) not in visited:
                     islands += 1
-                    dfs(i, j)
+                    bfs(r, c)
 
         return islands
