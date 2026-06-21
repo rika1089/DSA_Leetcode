@@ -19,7 +19,6 @@ public:
                 grid.push_back(path);
             }
         }
-        return grid;
-        
+        return grid;                                     
     }
 };
