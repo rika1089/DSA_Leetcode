@@ -1,15 +1,41 @@
 class Solution:
+    def check(self, mid, adj, topo, online, k, n):
+
+        dist = [inf] * n
+        dist[0] = 0
+
+        for u in topo:
+
+            if dist[u] == inf:
+                continue
+
+            if u != 0 and u != n - 1 and not online[u]:
+                continue
+
+            for v, w in adj[u]:
+
+                if w < mid:
+                    continue
+
+                if v != n - 1 and not online[v]:
+                    continue
+
+                dist[v] = min(dist[v], dist[u] + w)
+
+        return dist[n - 1] <= k
+
     def findMaxPathScore(self, edges: List[List[int]], online: List[bool], k: int) -> int:
         n = len(online)
 
-        graph = [[] for _ in range(n)]
+        adj = [[] for _ in range(n)]
         indegree = [0] * n
 
-        for u, v, w in edges:
-            graph[u].append((v, w))
-            indegree[v] += 1
+        max_edge = 0
 
-        from collections import deque
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            indegree[v] += 1
+            max_edge = max(max_edge, w)
 
         q = deque()
 
@@ -23,49 +49,22 @@ class Solution:
             u = q.popleft()
             topo.append(u)
 
-            for v, _ in graph[u]:
+            for v, _ in adj[u]:
                 indegree[v] -= 1
                 if indegree[v] == 0:
                     q.append(v)
 
-        def check(limit):
-            INF = 10 ** 30
-
-            dp = [INF] * n
-            dp[0] = 0
-
-            for u in topo:
-
-                if dp[u] == INF:
-                    continue
-
-                if u != 0 and u != n - 1 and not online[u]:
-                    continue
-
-                for v, w in graph[u]:
-
-                    if w < limit:
-                        continue
-
-                    if v != n - 1 and not online[v]:
-                        continue
-
-                    if dp[u] + w < dp[v]:
-                        dp[v] = dp[u] + w
-
-            return dp[-1] <= k
-
-        left = 0
-        right = 10 ** 9
+        low, high = 0, max_edge
         ans = -1
 
-        while left <= right:
-            mid = (left + right) // 2
+        while low <= high:
 
-            if check(mid):
+            mid = (low + high) // 2
+
+            if self.check(mid, adj, topo, online, k, n):
                 ans = mid
-                left = mid + 1
+                low = mid + 1
             else:
-                right = mid - 1
+                high = mid - 1
 
-        return ans
+        return ans  
