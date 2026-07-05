@@ -7,8 +7,8 @@ class Solution(object):
         """
         n = len(matrix)
         m = len(matrix[0])
-        if not matrix or n<1 or m<1 :
-            return False
+        # if not matrix or n<1 or m<1 :
+        #     return False
 
         row = 0
         col = m-1
