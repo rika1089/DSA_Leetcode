@@ -16,3 +16,4 @@ class Solution:
 
         return next(x for x in digRnge[::-1] if x)
       
+      
