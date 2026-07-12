@@ -1,19 +1,24 @@
 class Solution:
     def countNegatives(self, grid: List[List[int]]) -> int:
-        cnt = 0
+        m = len(grid)
+        n = len(grid[0])
 
         if grid[-1][-1] >= 0 :
             return 0
 
-        for i in range(len(grid)-1,-1,-1) :
+        i = m - 1
+        j = 0
+        cnt = 0
 
-            for j in range(len(grid[0])-1,-1,-1) :
+        while i>=0 and j<n :
+            if grid[i][j] < 0 :
+                cnt += n - j
+                i -= 1
+            else :
+                j += 1
 
-                if grid[i][j] < 0 :
-
-                    cnt += 1
-        
         return cnt
+        
 
 
 
