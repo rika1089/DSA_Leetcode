@@ -7,7 +7,6 @@ class Solution:
             if num not in rankmap :
                 rankmap[num] = rank
                 rank += 1
-        output = []
         for i in range(len(arr)) :
             arr[i] = rankmap[arr[i]]
         return arr
