@@ -1,9 +1,15 @@
 from collections import Counter
 class Solution:
     def smallestSubsequence(self, s: str) -> str:
-        freq = Counter(s)
+        # freq = Counter(s)
         stack = []
         in_stack = set()
+        
+        freq = {ch: 0 for ch in s}
+        
+
+        for ch in s:
+            freq[ch] += 1
 
         for ch in s :
             freq[ch] -= 1
