@@ -1,14 +1,15 @@
 class Solution:
     def maximumLengthSubstring(self, s: str) -> int:
-        res = l = 0
-        fq = defaultdict(int)
+        n = len(s)
+        maxi = float('-inf')
+        for i in range(n) :
+            for j in range(i+1 , n) :
+                substr = s[i:j+1]
+                frequency = {}
+                for char in substr :
+                    frequency[char] = frequency.get(char , 0) + 1
 
-        for r, ch in enumerate(s):
-            fq[ch] += 1
-            while fq[ch] > 2:
-                fq[s[l]] -= 1
-                l += 1
-                
-            res = max(res, r - l + 1)
+                if all(freq <= 2 for freq in frequency.values()) :
+                    maxi = max(maxi , len(substr))
+        return maxi
 
-        return res
