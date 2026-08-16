@@ -34,20 +34,28 @@ class Solution:
 
 
 
+        # Create a dummy node that points to the head
+        # This helps handle edge cases like removing the first node
         dummy = ListNode(0)
         dummy.next = head
 
+        # Initialize two pointers, both starting at dummy
         slow = dummy
         fast = dummy
 
+        # Move the fast pointer ahead by n+1 steps
+        # This creates a gap of n nodes between fast and slow
         for _ in range(n + 1):
             fast = fast.next
 
+        # Move both pointers until fast reaches the end
+        # At that point, slow will be right before the node to delete
         while fast:
-
             slow = slow.next
             fast = fast.next
 
+        # Skip the target node by adjusting the link
         slow.next = slow.next.next
 
+        # Return the new head (dummy.next handles the case where head was removed)
         return dummy.next
