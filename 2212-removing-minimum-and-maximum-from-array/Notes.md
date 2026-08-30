@@ -1,1 +1,1 @@
-<h2>removing-minimum-and-maximum-from-array Notes</h2><hr>[ Time taken: 6hrs 31m 36s ]
+<h2>removing-minimum-and-maximum-from-array Notes</h2><hr>[ Time taken: 6hrs 32m 29s ]
