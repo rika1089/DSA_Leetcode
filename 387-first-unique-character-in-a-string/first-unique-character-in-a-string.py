@@ -1,0 +1,15 @@
+from collections import Counter
+
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        freq = {}
+
+        for char in s :
+            freq[char] = freq.get(char, 0) + 1
+
+        for key,val in freq.items() :
+            if val == 1 :
+                return s.find(key)
+        
+        return -1
+        
