@@ -7,9 +7,12 @@ class Solution:
         for char in s :
             freq[char] = freq.get(char, 0) + 1
 
-        for key,val in freq.items() :
-            if val == 1 :
-                return s.find(key)
+        # for key,val in freq.items() :
+        #     if val == 1 :
+        #         return s.find(key)
+        for idx,char in enumerate(s) :
+            if freq[char] == 1 :
+                return idx
         
         return -1
         
