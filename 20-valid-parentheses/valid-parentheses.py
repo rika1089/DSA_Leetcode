@@ -26,12 +26,18 @@ class Solution:
             '}' : '{',
         }
         stack = []
+        if s == "" :
+            return True
+        if len(s) % 2 == 1 :
+            return False
         for i in range(len(s)) :
             if s[i] in Map :
                     if not stack or  Map[s[i]] != stack.pop() :
                         return False
-            else :
+            elif s[i] in Map.values():
                 stack.append(s[i])
+            else :
+                return False
         
         return len(stack) == 0
 
