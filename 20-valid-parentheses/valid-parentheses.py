@@ -26,15 +26,15 @@ class Solution:
             '}' : '{',
         }
         stack = []
-        if s == "" :
+        if s == "" :       # If the string is empty
             return True
-        if len(s) % 2 == 1 :
+        if len(s) % 2 == 1 :  # If the len of string is odd
             return False
         for i in range(len(s)) :
             if s[i] in Map :
                     if not stack or  Map[s[i]] != stack.pop() :
                         return False
-            elif s[i] in Map.values():
+            elif s[i] in Map.values(): # '({['
                 stack.append(s[i])
             else :
                 return False
