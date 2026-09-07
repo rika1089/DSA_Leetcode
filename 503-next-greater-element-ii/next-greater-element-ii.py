@@ -6,12 +6,14 @@ class Solution:
         res = [-1]*n
         stack = []
         
+        # iterate twice over the array (to simulate circular array)
         for i in range(2*n) :
             cur = nums[i%n]
+            # resolve indices whose next greater is curr
             while stack and cur > nums[stack[-1]] :
                 idx = stack.pop()
                 res[idx] = cur
-            
+            # push into stack 
             if i < n :
                 stack.append(i)
         return res
