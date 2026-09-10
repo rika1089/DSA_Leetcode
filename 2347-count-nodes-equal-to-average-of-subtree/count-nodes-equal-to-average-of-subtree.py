@@ -23,7 +23,7 @@ class Solution:
             total_sum = left_sum + right_sum + node.val
             total_cnt = left_cnt + right_cnt + 1  # 1 is for root node 
 
-            if node.val == total_sum // total_cnt :
+            if node.val == total_sum // total_cnt :  # Check whether Q'a is satisfied
                 self.count_subtree += 1 
             
             return (total_sum, total_cnt)
