@@ -29,3 +29,27 @@ class Solution:
             return -1
         else : 
             return ans
+
+        # TLE
+                                       # TC = O(n^2)  : iterating once
+                                       # SC = O(len(subs)^2)  : for dp                                   
+        # n = len(arr)
+        # subs = []
+        # # find all subarrays with sum == target
+        # for i in range(n):
+        #     s = 0
+        #     for j in range(i, n):
+        #         s += arr[j]
+        #         if s == target:
+        #             subs.append((i, j, j - i + 1))  # (start, end, length)
+
+        # ans = float('inf')
+        # # check all pairs for non-overlap
+        # for i in range(len(subs)):
+        #     for j in range(i + 1, len(subs)):
+        #         s1, e1, l1 = subs[i]
+        #         s2, e2, l2 = subs[j]
+        #         if e1 < s2 or e2 < s1:  # non-overlapping
+        #             ans = min(ans, l1 + l2)
+
+        # return ans if ans != float('inf') else -1
