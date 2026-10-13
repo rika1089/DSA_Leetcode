@@ -10,7 +10,7 @@ class Solution:
         #         Sum += nums[i] ** 2
         # return Sum
 
-        n = len(nums)
+        n = len(nums)                            # TC = O(n+n)
         sorted_nums = sorted(x*x for x in nums)
         # add the big squares, subtract the k smallest ones
         return sum(sorted_nums[n//2:])-sum(sorted_nums[:n//2])
